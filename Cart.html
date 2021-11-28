@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-wideth, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="bootstrap-5.1.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="Flat-UI-master/dist/css/flat-ui.min.css" />
+  <script src="Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+  <script src="bootstrap-5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="Flat-UI-master/dist/js/flat-ui.min.js"></script>
+  <title></title>
+  <style>
+    .row {
+      margin-left: 20px;
+      margin-right: 20px;
+      ;
+    }
+
+    .line-center {
+      line-height: 50px;
+      text-align: center;
+    }
+
+    .row input {
+      width: 50px;
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      left: 44%;
+    }
+  </style>
+  <script>
+    $(function () {
+
+      $('.del').click(function () {
+        if ($(this).siblings('input').val() > 1) {
+          var num = $(this).siblings('input').val();
+          num--;
+          $(this).siblings('input').val(num);
+          var price = $(this).parent().siblings('.price').html();
+          price = price.substr(1);
+          $(this).parent().siblings('.count').html("$" + price * num);
+
+
+          var n = $('#num').html();
+          n--;
+          $('#num').html(n);
+          var count = $('#total').html();
+          count = parseInt(count.substr(1));
+          count -= parseInt(price);
+          $('#total').html("$" + count);
+        }
+        else {
+          alert("不能再少啦！");
+        }
+      })
+
+
+      $('.add').click(function () {
+        var num = $(this).siblings('input').val();
+        num++;
+        $(this).siblings('input').val(num);
+        var price = $(this).parent().siblings('.price').html();
+        price = price.substr(1);
+        $(this).parent().siblings('.count').html("$" + price * num);
+
+        var n = $('#num').html();
+        n++;
+        $('#num').html(n);
+        var count = $('#total').html();
+        count = parseInt(count.substr(1));
+        count += parseInt(price);
+        $('#total').html("$" + count);
+      })
+
+      $('.remove').click(function() {
+        var price = $(this).siblings('.price').html();
+        price = price.substr(1);
+        var num = $(this).siblings('.box').children('input').val();
+        
+        var n = $('#num').html();
+        var count = $('#total').html();
+        count = parseInt(count.substr(1));
+        n -= num;
+        count -= price*num;
+        $('#num').html(n);
+        $('#total').html("$" + count);
+        $(this).parents('.list-group-item').remove();
+      })
+
+    })
+  </script>
+</head>
+
+<body>
+  <!-- Static navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="Index.html">图书商城</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Index.html">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Order.html">我的订单</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              个人
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="UserInfo.html">个人中心</a></li>
+              <li><a class="dropdown-item" href="#">信息修改</a></li>
+              <li><a class="dropdown-item" href="#">密码修改</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">订单管理</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="FriendLink.html">友情链接</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right hidden-sm">
+          <li><a href="Login.html">登录</a></li>
+          <li><a href="Register.html">注册</a></li>
+          <li>
+            <a href="Cart.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-cart4" viewBox="0 0 16 16">
+                <path
+                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z">
+                </path>
+              </svg>购物车</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!--content-->
+  <div class="container">
+    <div class="row thumbnail center">
+      <div class="col-sm-12">
+        <h1 class="text-center" style="margin-bottom: 30px">购物车</h1>
+      </div>
+      <div class="container list-group-item">
+        <div class="row">
+          <div class="col-2 order-last line-center">
+            操作
+          </div>
+          <div class="col-2 line-center">
+            单价
+          </div>
+          <div class="col-4 line-center">
+            数量
+          </div>
+          <div class="col-2 line-center">
+            小计
+          </div>
+          <div class="col-2 order-first line-center">
+            图书
+          </div>
+        </div>
+      </div>
+      <div class="container list-group-item">
+        <div class="row">
+          <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+            <img src="Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt="" />
+          </div>
+          <div class="col-1 col-sm-1 line-center">Python</div>
+          <div class="col-3 col-sm-3 line-center price">$88</div>
+          <div class="col-3 col-sm-3 line-center box">
+            <button type="button" class="btn btn-default del">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true">-</span>
+            </button>
+            <input type="text" class="small text-center" value="1">
+            <button type="button" class="btn btn-default add">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="col-sm-3 line-center count">$88</div>
+          <div class="col-sm-1 line-center remove"><button class="btn btn-danger ">删除</button></div>
+        </div>
+      </div>
+      <div class="container list-group-item">
+        <div class="row">
+          <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+            <img src="Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt="" />
+          </div>
+          <div class="col-1 col-sm-1 line-center">Bootstrap</div>
+          <div class="col-3 col-sm-3 line-center price">$100</div>
+          <div class="col-3 col-sm-3 line-center box">
+            <button type="button" class="btn btn-default del">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true">-</span>
+            </button>
+            <input type="text" class="small text-center" value="1" />
+            <button type="button" class="btn btn-default add">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="col-sm-3 line-center count">$100</div>
+          <div class="col-sm-1 line-center remove"><button class="btn btn-danger">删除</button></div>
+        </div>
+      </div>
+      <div class="container list-group-item">
+        <div class="row">
+          <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+            <img src="Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt="" />
+          </div>
+          <div class="col-1 col-sm-1 line-center">简爱</div>
+          <div class="col-3 col-sm-3 line-center price">$66</div>
+          <div class="col-3 col-sm-3 line-center box">
+            <button type="button" class="btn btn-default del">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true">-</span>
+            </button>
+            <input type="text" class="small text-center" value="1" />
+            <button type="button" class="btn btn-default add">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="col-sm-3 line-center count">$66</div>
+          <div class="col-sm-1 line-center remove"><button class="btn btn-danger">删除</button></div>
+        </div>
+      </div>
+      <div class="container list-group-item">
+        <div class="row">
+          <div class="col-sm-1 line-center" style="width: 50px;height: 50px;">
+            <img src="Flat-UI-master/dist/img/icons/png/Book.png" style="height: 100%;" alt="" />
+          </div>
+          <div class="col-1 col-sm-1 line-center">三体</div>
+          <div class="col-3 col-sm-3 line-center price">$58</div>
+          <div class="col-3 col-sm-3 line-center box">
+            <button type="button" class="btn btn-default del">
+              <span class="glyphicon glyphicon-minus" aria-hidden="true">-</span>
+            </button>
+            <input type="text" class="small text-center" value="1" />
+            <button type="button" class="btn btn-default add">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true">+</span>
+            </button>
+          </div>
+          <div class="col-sm-3 line-center count">$58</div>
+          <div class="col-sm-1 line-center remove"><button class="btn btn-danger">删除</button></div>
+        </div>
+      </div>
+
+
+      <div class="container thumbnail">
+        <div class="row">
+          <div class="col-sm offset-sm-8">总数：</div>
+          <div class="col-sm-1" id="num">4</div>
+          <div class="col-sm-1">总价：</div>
+          <div class="col-sm-1" id="total">$312</div>
+        </div>
+      </div>
+      <div style="padding: 30px;">
+        <div class="col-sm-3 offset-sm-2 btn btn-success"><a href="Index.html" style="color: #fff;">继续购物</a></div>
+        <div class="col-sm-3 offset-sm-1 btn btn-success"><a href="OrderInfo.html" style="color: #fff;">提交订单</a></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--footer-->
+  <div class="footer">
+    <p class="bottom">Copyright 2021.11.27 Chinese nigger</p>
+  </div>
+</body>
+
+</html>
